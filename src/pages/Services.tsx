@@ -139,8 +139,8 @@ export default function Services() {
         <div className="container space-y-12">
           {detailedServices.map((svc, i) => (
             <ScrollReveal key={svc.id} delay={i * 60}>
-              <div className="rounded-2xl border border-border bg-card/90 backdrop-blur-md p-6 sm:p-8 lg:p-10 relative overflow-hidden shadow-xl hover:border-primary/40 transition-colors">
-                <div className="grid lg:grid-cols-12 gap-8 items-start">
+              <div className="rounded-2xl border border-border bg-card/90 backdrop-blur-md p-4 sm:p-8 lg:p-10 relative overflow-hidden shadow-xl hover:border-primary/40 transition-colors">
+                <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 items-start">
                   {/* Left Column: Icon & Core Details */}
                   <div className="lg:col-span-7 space-y-6">
                     <div className="flex items-center justify-between gap-3">
@@ -204,9 +204,9 @@ export default function Services() {
                     </div>
 
                     <div className="pt-4 border-t border-border/60">
-                      <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs shadow-md" asChild>
+                      <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs shadow-md truncate" asChild>
                         <Link to="/contact">
-                          Request Scoping for {svc.title} <ArrowRight className="h-3.5 w-3.5 ml-1.5" />
+                          Request Scoping <ArrowRight className="h-3.5 w-3.5 ml-1.5 shrink-0" />
                         </Link>
                       </Button>
                     </div>
