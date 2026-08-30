@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Shield, Menu, X, ArrowRight } from "lucide-react";
+import { Shield, Menu, X, ArrowRight, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
+import { useAuth } from "@/context/AuthContext";
 
 const navLinks = [
   { to: "/", label: "Overview" },
@@ -15,6 +16,7 @@ const navLinks = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const { user, logout } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl transition-all">
@@ -66,15 +68,34 @@ const Navbar = () => {
         {/* Desktop Action Buttons & Theme Toggle */}
         <div className="hidden md:flex items-center gap-2.5">
           <ThemeToggle />
-          <Button
-            size="sm"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-4 shadow-[0_0_20px_hsl(var(--primary)/0.25)] hover:shadow-[0_0_25px_hsl(var(--primary)/0.4)] transition-all gap-1.5 text-xs"
-            asChild
-          >
-            <Link to="/contact">
-              Request Consultation <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </Button>
+          {user ? (
+            <>
+              <Button size="sm" variant="outline" className="gap-1.5 text-xs border-border" asChild>
+                <Link to="/dashboard">
+                  <User className="h-3.5 w-3.5" />
+                  {user.displayName?.split(" ")[0] || user.email?.split("@")[0]}
+                </Link>
+              </Button>
+              <Button size="sm" variant="ghost" className="gap-1.5 text-xs text-muted-foreground" onClick={logout}>
+                <LogOut className="h-3.5 w-3.5" /> Sign Out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button size="sm" variant="outline" className="text-xs border-border" asChild>
+                <Link to="/login">Sign In</Link>
+              </Button>
+              <Button
+                size="sm"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-4 shadow-[0_0_20px_hsl(var(--primary)/0.25)] hover:shadow-[0_0_25px_hsl(var(--primary)/0.4)] transition-all gap-1.5 text-xs"
+                asChild
+              >
+                <Link to="/contact">
+                  Request Consultation <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </Button>
+            </>
+          )}
         </div>
 
         {/* Mobile controls: Theme toggle + Menu toggle */}
@@ -120,12 +141,30 @@ const Navbar = () => {
               );
             })}
 
-            <div className="pt-3 mt-2 border-t border-border/60">
-              <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold" asChild>
-                <Link to="/contact" onClick={() => setOpen(false)}>
-                  Book Security Assessment
-                </Link>
-              </Button>
+            <div className="pt-3 mt-2 border-t border-border/60 space-y-2">
+              {user ? (
+                <>
+                  <Button className="w-full" variant="outline" asChild>
+                    <Link to="/dashboard" onClick={() => setOpen(false)}>
+                      <User className="h-4 w-4 mr-2" /> Dashboard
+                    </Link>
+                  </Button>
+                  <Button className="w-full" variant="ghost" onClick={() => { logout(); setOpen(false); }}>
+                    <LogOut className="h-4 w-4 mr-2" /> Sign Out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button className="w-full" variant="outline" asChild>
+                    <Link to="/login" onClick={() => setOpen(false)}>Sign In</Link>
+                  </Button>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold" asChild>
+                    <Link to="/contact" onClick={() => setOpen(false)}>
+                      Book Security Assessment
+                    </Link>
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         </div>

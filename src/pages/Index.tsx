@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Shield,
   Search,
@@ -11,11 +11,13 @@ import {
   CheckCircle2,
   Terminal as TerminalIcon,
   Key,
+  Lock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
 import NetworkTopologyCanvas from "@/components/NetworkTopologyCanvas";
 import TiltCard from "@/components/TiltCard";
+import { useAuth } from "@/context/AuthContext";
 
 // Core Capabilities Data
 const capabilities = [
@@ -88,6 +90,8 @@ const capabilities = [
 ];
 
 export default function Index() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/20 selection:text-primary">
       {/* ── SECTION 1: HERO ──────────────────────────────────────────────────── */}
@@ -324,9 +328,10 @@ export default function Index() {
                   <Button
                     size="sm"
                     className="w-full bg-primary/15 hover:bg-primary text-primary hover:text-primary-foreground border border-primary/30 transition-all text-xs"
-                    asChild
+                    onClick={() => user ? navigate(t.route) : navigate("/login")}
                   >
-                    <Link to={t.route}>Launch Tool</Link>
+                    {!user && <Lock className="h-3 w-3 mr-1" />}
+                    Launch Tool
                   </Button>
                 </TiltCard>
               </ScrollReveal>
