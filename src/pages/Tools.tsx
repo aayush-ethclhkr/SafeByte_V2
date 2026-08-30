@@ -169,64 +169,13 @@ export default function Tools() {
         </div>
       </section>
 
-      {/* ── Web Engines ─────────────────────────────────────────────────────── */}
+      {/* ── Desktop Apps ────────────────────────────────────────────────────── */}
       <section className="py-20">
         <div className="container space-y-8">
           <ScrollReveal>
             <div className="flex items-center justify-between gap-4 pb-4 border-b border-border">
               <div>
                 <div className="text-xs font-mono text-primary uppercase tracking-widest">Category 01</div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Browser-Based Security Engines</h2>
-              </div>
-              <span className="text-xs font-mono text-muted-foreground hidden sm:inline">
-                Zero Installation · 100% Client-Side Privacy
-              </span>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {webEngines.map((t, idx) => (
-              <ScrollReveal key={t.name} delay={idx * 80}>
-                <TiltCard className="p-6 sm:p-7 h-full flex flex-col justify-between group">
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-4">
-                      <div className="h-11 w-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
-                        <t.icon className="h-5 w-5" />
-                      </div>
-                      <span className="text-[10px] font-mono font-bold text-primary px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
-                        {t.badge}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">{t.name}</h3>
-                      <span className="text-xs font-mono text-primary font-semibold">{t.version}</span>
-                    </div>
-                    <p className="text-xs text-muted-foreground font-mono mb-4">{t.platform}</p>
-                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-6">{t.desc}</p>
-                  </div>
-                  <div className="pt-4 border-t border-border/60">
-                    <AuthGatedLink
-                      to={t.webTool!}
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs gap-1.5 shadow-md inline-flex items-center justify-center rounded-md px-4 py-2"
-                      size="sm"
-                    >
-                      <Zap className="h-3.5 w-3.5 mr-1" /> Launch {t.name}
-                    </AuthGatedLink>
-                  </div>
-                </TiltCard>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Desktop Apps ────────────────────────────────────────────────────── */}
-      <section className="py-20 border-t border-border bg-muted/30">
-        <div className="container space-y-8">
-          <ScrollReveal>
-            <div className="flex items-center justify-between gap-4 pb-4 border-b border-border">
-              <div>
-                <div className="text-xs font-mono text-primary uppercase tracking-widest">Category 02</div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Standalone System Auditing Applications</h2>
               </div>
               <span className="text-xs font-mono text-muted-foreground hidden sm:inline">
@@ -274,6 +223,57 @@ export default function Tools() {
                     </AuthGatedLink>
                   </div>
                 </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Web Engines ─────────────────────────────────────────────────────── */}
+      <section className="py-20 border-t border-border bg-muted/30">
+        <div className="container space-y-8">
+          <ScrollReveal>
+            <div className="flex items-center justify-between gap-4 pb-4 border-b border-border">
+              <div>
+                <div className="text-xs font-mono text-primary uppercase tracking-widest">Category 02</div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Browser-Based Security Engines</h2>
+              </div>
+              <span className="text-xs font-mono text-muted-foreground hidden sm:inline">
+                Zero Installation · 100% Client-Side Privacy
+              </span>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {webEngines.map((t, idx) => (
+              <ScrollReveal key={t.name} delay={idx * 80}>
+                <TiltCard className="p-6 sm:p-7 h-full flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <div className="h-11 w-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+                        <t.icon className="h-5 w-5" />
+                      </div>
+                      <span className="text-[10px] font-mono font-bold text-primary px-2 py-0.5 rounded bg-primary/10 border border-primary/20">
+                        {t.badge}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">{t.name}</h3>
+                      <span className="text-xs font-mono text-primary font-semibold">{t.version}</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground font-mono mb-4">{t.platform}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-6">{t.desc}</p>
+                  </div>
+                  <div className="pt-4 border-t border-border/60">
+                    <AuthGatedLink
+                      to={t.webTool!}
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs gap-1.5 shadow-md inline-flex items-center justify-center rounded-md px-4 py-2"
+                      size="sm"
+                    >
+                      <Zap className="h-3.5 w-3.5 mr-1" /> Launch {t.name}
+                    </AuthGatedLink>
+                  </div>
+                </TiltCard>
               </ScrollReveal>
             ))}
           </div>
