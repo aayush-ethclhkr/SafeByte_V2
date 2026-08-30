@@ -1,4 +1,4 @@
-import { Shield } from "lucide-react";
+import { Shield, PhoneCall, Mail, MapPin, Key, ExternalLink, Radio } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const LinkedInIcon = () => (
@@ -14,60 +14,183 @@ const InstagramIcon = () => (
 );
 
 const Footer = () => (
-  <footer className="border-t border-border/50 bg-card/50">
-    <div className="container py-12">
-      <div className="grid gap-8 md:grid-cols-4">
-        <div>
-          <Link to="/" className="flex items-center gap-2 mb-4">
-            <Shield className="h-6 w-6 text-primary" />
-            <span className="text-lg font-bold text-foreground">
-              Safe<span className="text-primary">Byte</span>
+  <footer className="border-t border-border bg-card/60 relative text-foreground/90 font-sans">
+    {/* Incident Triage Strip */}
+    <div className="border-b border-border/80 bg-muted/40">
+      <div className="container py-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+        <div className="flex items-center gap-3">
+          <span className="flex h-2.5 w-2.5 rounded-full bg-red-500 animate-pulse" />
+          <span className="font-mono font-semibold text-foreground tracking-wide">
+            24/7 ACTIVE INCIDENT &amp; BREACH RESPONSE DESK
+          </span>
+        </div>
+        <div className="flex items-center gap-6 font-mono text-muted-foreground">
+          <a
+            href="tel:+918923817932"
+            className="flex items-center gap-1.5 text-primary hover:underline font-bold"
+          >
+            <PhoneCall className="h-3.5 w-3.5" /> +91 89238 17932
+          </a>
+          <span className="hidden md:inline text-muted-foreground/30">|</span>
+          <span className="hidden md:flex items-center gap-1 text-emerald-500 dark:text-emerald-400">
+            <Radio className="h-3.5 w-3.5" /> MTTR &lt; 15 MIN
+          </span>
+        </div>
+      </div>
+    </div>
+
+    {/* Main Footer Content */}
+    <div className="container py-14">
+      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
+        {/* Brand column */}
+        <div className="lg:col-span-4 space-y-4">
+          <Link to="/" className="flex items-center gap-2.5">
+            <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-primary/10 border border-primary/30">
+              <Shield className="h-4 w-4 text-primary" />
+            </div>
+            <span className="text-lg font-bold tracking-tight text-foreground">
+              Safe<span className="text-primary text-glow-cyan">Byte</span>
             </span>
           </Link>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            Enterprise-grade cybersecurity solutions protecting organizations worldwide since 2018.
+          <p className="text-xs text-muted-foreground leading-relaxed max-w-sm">
+            SafeByte is an offensive cybersecurity consultancy delivering adversary simulation, penetration testing, smart contract auditing, and rapid incident response to high-stakes organizations worldwide.
           </p>
+          <div className="pt-2 text-[11px] font-mono text-muted-foreground/80 space-y-1">
+            <div>METHODOLOGIES: NIST SP 800-115 · MITRE ATT&amp;CK · OWASP</div>
+            <div>VERIFIED CREDENTIALS: OSCP · CEH · CRTP · CISSP</div>
+          </div>
         </div>
-        <div>
-          <h4 className="text-sm font-semibold text-foreground mb-4">Services</h4>
-          <ul className="space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/services" className="hover:text-primary transition-colors">Penetration Testing</Link></li>
-            <li><Link to="/services" className="hover:text-primary transition-colors">Vulnerability Assessment</Link></li>
-            <li><Link to="/services" className="hover:text-primary transition-colors">Network Security</Link></li>
-            <li><Link to="/services" className="hover:text-primary transition-colors">Cloud Security</Link></li>
+
+        {/* Capabilities column */}
+        <div className="lg:col-span-3 space-y-3 text-xs">
+          <h4 className="text-xs font-mono uppercase tracking-widest text-primary font-bold">
+            Security Capabilities
+          </h4>
+          <ul className="space-y-2 text-muted-foreground">
+            <li>
+              <Link to="/services" className="hover:text-primary transition-colors">
+                Penetration Testing (Web, API, Mobile)
+              </Link>
+            </li>
+            <li>
+              <Link to="/services" className="hover:text-primary transition-colors">
+                AI Red Teaming &amp; Adversary Emulation
+              </Link>
+            </li>
+            <li>
+              <Link to="/services" className="hover:text-primary transition-colors">
+                Digital Forensics &amp; Incident Response (DFIR)
+              </Link>
+            </li>
+            <li>
+              <Link to="/services" className="hover:text-primary transition-colors">
+                Cloud &amp; Infrastructure Hardening
+              </Link>
+            </li>
+            <li>
+              <Link to="/services" className="hover:text-primary transition-colors">
+                CryptoTrace Blockchain Intelligence
+              </Link>
+            </li>
           </ul>
         </div>
-        <div>
-          <h4 className="text-sm font-semibold text-foreground mb-4">Company</h4>
-          <ul className="space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-            <li><Link to="/tools" className="hover:text-primary transition-colors">Our Tools</Link></li>
-            <li><Link to="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
+
+        {/* Tools & Company column */}
+        <div className="lg:col-span-2 space-y-3 text-xs">
+          <h4 className="text-xs font-mono uppercase tracking-widest text-primary font-bold">
+            Platform &amp; Suite
+          </h4>
+          <ul className="space-y-2 text-muted-foreground">
+            <li>
+              <Link to="/tools" className="hover:text-primary transition-colors">
+                Security Tools Suite
+              </Link>
+            </li>
+            <li>
+              <Link to="/tools/malware-scanner" className="hover:text-primary transition-colors">
+                Malware Detector
+              </Link>
+            </li>
+            <li>
+              <Link to="/tools/vuln-scanner" className="hover:text-primary transition-colors">
+                Vulnerability Scanner
+              </Link>
+            </li>
+            <li>
+              <Link to="/tools/crypto-trace" className="hover:text-primary transition-colors">
+                CryptoTrace AI
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="hover:text-primary transition-colors">
+                Engineering Team
+              </Link>
+            </li>
           </ul>
         </div>
-        <div>
-          <h4 className="text-sm font-semibold text-foreground mb-4">Contact</h4>
-          <ul className="space-y-2 text-sm text-muted-foreground">
-            <li>team.safebyte@gmail.com</li>
-            <li>+91 89238 17932</li>
-            <li>Meerut, Uttar Pradesh, India</li>
+
+        {/* Direct Contact column */}
+        <div className="lg:col-span-3 space-y-3 text-xs">
+          <h4 className="text-xs font-mono uppercase tracking-widest text-primary font-bold">
+            Direct Operations
+          </h4>
+          <ul className="space-y-2 text-muted-foreground font-mono">
+            <li className="flex items-center gap-2">
+              <Mail className="h-3.5 w-3.5 text-primary shrink-0" />
+              <a href="mailto:team.safebyte@gmail.com" className="hover:text-primary transition-colors">
+                team.safebyte@gmail.com
+              </a>
+            </li>
+            <li className="flex items-center gap-2">
+              <PhoneCall className="h-3.5 w-3.5 text-primary shrink-0" />
+              <a href="tel:+918923817932" className="hover:text-primary transition-colors">
+                +91 89238 17932
+              </a>
+            </li>
+            <li className="flex items-start gap-2">
+              <MapPin className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
+              <span>Meerut, Uttar Pradesh, India</span>
+            </li>
           </ul>
         </div>
       </div>
-      <div className="mt-12 pt-6 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-xs text-muted-foreground">© 2026 SafeByte. All rights reserved.</p>
+
+      {/* Bottom Bar */}
+      <div className="mt-12 pt-6 border-t border-border/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+        <div className="flex items-center gap-2">
+          <span>&copy; {new Date().getFullYear()} SafeByte Security. All rights reserved.</span>
+          <span className="hidden sm:inline text-muted-foreground/30">&bull;</span>
+          <span className="hidden sm:inline font-mono text-[11px] text-emerald-500 dark:text-emerald-400">
+            ENCRYPTED COMMS ACTIVE
+          </span>
+        </div>
+
         <div className="flex items-center gap-6">
-          <a href="https://www.linkedin.com/in/safebyte-x-vyadh-a43a90361/" target="_blank" rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
+          <a
+            href="https://www.linkedin.com/in/safebyte-x-vyadh-a43a90361/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-primary transition-colors p-1"
+            aria-label="LinkedIn"
+          >
             <LinkedInIcon />
           </a>
-          <a href="https://www.instagram.com/safebyte_team/" target="_blank" rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-primary transition-colors" aria-label="Instagram">
+          <a
+            href="https://www.instagram.com/safebyte_team/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-primary transition-colors p-1"
+            aria-label="Instagram"
+          >
             <InstagramIcon />
           </a>
-          <div className="flex gap-6 text-xs text-muted-foreground">
-            <span className="hover:text-primary transition-colors cursor-pointer">Privacy Policy</span>
-            <span className="hover:text-primary transition-colors cursor-pointer">Terms of Service</span>
+          <div className="flex gap-4 text-xs text-muted-foreground">
+            <Link to="/contact" className="hover:text-primary transition-colors">
+              Responsible Disclosure
+            </Link>
+            <Link to="/contact" className="hover:text-primary transition-colors">
+              Privacy &amp; Terms
+            </Link>
           </div>
         </div>
       </div>

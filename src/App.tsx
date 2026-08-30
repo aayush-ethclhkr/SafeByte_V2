@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ThemeProvider } from "next-themes";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/Navbar";
@@ -19,28 +20,30 @@ import CryptoTrace from "./pages/CryptoTrace";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Sonner />
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/tools" element={<Tools />} />
-          <Route path="/tools/malware-scanner" element={<MalwareScanner />} />
-          <Route path="/tools/vuln-scanner" element={<VulnScanner />} />
-          <Route path="/tools/fraud-scanner" element={<FraudScanner />} />
-          <Route path="/tools/crypto-trace" element={<CryptoTrace />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-        <ChatBot />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Sonner />
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/tools" element={<Tools />} />
+            <Route path="/tools/malware-scanner" element={<MalwareScanner />} />
+            <Route path="/tools/vuln-scanner" element={<VulnScanner />} />
+            <Route path="/tools/fraud-scanner" element={<FraudScanner />} />
+            <Route path="/tools/crypto-trace" element={<CryptoTrace />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+          <ChatBot />
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;

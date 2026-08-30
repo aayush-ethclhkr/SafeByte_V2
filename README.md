@@ -427,6 +427,17 @@ Trace any blockchain wallet — live balance, transaction intelligence, risk sco
 
 Ported from the [CryptoTrace AI Python desktop tool](#cryptotrace-ai-desktop) into a fully browser-based implementation.
 
+#### Test Addresses
+
+Use these real public addresses to test the tool:
+
+| Network | Address | Notes |
+|---|---|---|
+| **Ethereum** | `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045` | Vitalik Buterin's public wallet |
+| **Bitcoin** | `1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa` | Genesis block address (Satoshi) |
+| **Tron** | `TKzxdSv2FZKQrEqkKVgp5DcwEXBEKMg2Ax` | Binance public Tron hot wallet |
+| **OFAC Sanctioned** | `0x7F367cC41522cE07553e823bf3be79A889DEbe1B` | Lazarus Group — triggers CRITICAL alert |
+
 #### Supported Networks
 
 | Network | Address Format | Balance API |
