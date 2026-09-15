@@ -63,7 +63,7 @@ const tools = [
     platform: "macOS · Windows Desktop",
     webTool: null,
     downloadUrl: "/downloads/SafeByte-Password-Manager-macOS.zip",
-    windowsUrl: "/downloads/SafeByte-Password-Manager-Windows.exe",
+    windowsUrl: "/downloads/SafeByte-Password-Manager.exe",
     badge: "ENCRYPTED VAULT",
   },
   {
@@ -75,7 +75,7 @@ const tools = [
     platform: "macOS · Windows Desktop",
     webTool: null,
     downloadUrl: "/downloads/SafeByte-File-Crawler-macOS.zip",
-    windowsUrl: "/downloads/SafeByte-File-Crawler-Windows.exe",
+    windowsUrl: "/downloads/SafeByte-File-Crawler.exe",
     badge: "LOCAL AUDITOR",
   },
   {
@@ -87,7 +87,7 @@ const tools = [
     platform: "macOS · Windows Desktop",
     webTool: null,
     downloadUrl: "/downloads/SafeByte-USB-Monitor-macOS.zip",
-    windowsUrl: "/downloads/SafeByte-USB-Monitor-Windows.exe",
+    windowsUrl: "/downloads/SafeByte-USB-Monitor.exe",
     badge: "HARDWARE SENTRY",
   },
 ];
