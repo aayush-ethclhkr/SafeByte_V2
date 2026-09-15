@@ -39,10 +39,7 @@ const Navbar = () => {
           </Link>
 
           {/* SOC Operational status indicator */}
-          <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-500 dark:text-emerald-400">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
-            <span>SOC ACTIVE</span>
-          </div>
+
         </div>
 
         {/* Desktop Nav Links */}
