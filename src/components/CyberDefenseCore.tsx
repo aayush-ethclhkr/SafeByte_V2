@@ -1,24 +1,24 @@
 import { Activity, Binary, LockKeyhole, Radar, ShieldCheck } from "lucide-react";
 
 const signals = [
-  { label: "Threat vectors", value: "2,847", tone: "text-primary" },
-  { label: "Blocked today", value: "99.98%", tone: "text-emerald-400" },
-  { label: "Mean response", value: "0.8ms", tone: "text-primary" },
+  { label: "Founded", value: "2024", tone: "text-primary" },
+  { label: "Early clients", value: "3", tone: "text-emerald-400" },
+  { label: "Founder reply", value: "<24h", tone: "text-primary" },
 ];
 
 export default function CyberDefenseCore() {
   return (
-    <div className="hero-console" aria-label="Live SafeByte defense network visualization">
+    <div className="hero-console" aria-label="SafeByte security lab concept visualization">
       <div className="hero-console__frame">
         <div className="hero-console__header">
           <div className="flex items-center gap-2.5">
             <span className="status-beacon" />
             <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-foreground/80">
-              DEFENSE CORE / LIVE
+              SECURITY LAB / DEMO
             </span>
           </div>
           <div className="flex items-center gap-2 font-mono text-[9px] tracking-widest text-muted-foreground">
-            <LockKeyhole className="h-3 w-3 text-primary" /> AES-256
+            <LockKeyhole className="h-3 w-3 text-primary" /> EST. 2024
           </div>
         </div>
 
@@ -32,28 +32,28 @@ export default function CyberDefenseCore() {
             <div className="defense-core__back" />
             <div className="defense-core__face">
               <ShieldCheck className="h-16 w-16 text-primary" strokeWidth={1.35} />
-              <span className="font-mono text-[9px] font-bold tracking-[0.26em] text-primary">PROTECTED</span>
+              <span className="font-mono text-[9px] font-bold tracking-[0.26em] text-primary">FOUNDER LED</span>
             </div>
           </div>
 
           <div className="floating-module floating-module--left">
             <Radar className="h-4 w-4 text-primary" />
             <div>
-              <div className="text-[9px] font-mono tracking-widest text-muted-foreground">EDGE SCAN</div>
-              <div className="text-[11px] font-semibold text-foreground">Perimeter clean</div>
+              <div className="text-[9px] font-mono tracking-widest text-muted-foreground">RESEARCH MODE</div>
+              <div className="text-[11px] font-semibold text-foreground">Manual validation</div>
             </div>
           </div>
 
           <div className="floating-module floating-module--right">
             <Activity className="h-4 w-4 text-emerald-400" />
             <div>
-              <div className="text-[9px] font-mono tracking-widest text-muted-foreground">UPTIME</div>
-              <div className="text-[11px] font-semibold text-foreground">99.999%</div>
+              <div className="text-[9px] font-mono tracking-widest text-muted-foreground">DATA MODE</div>
+              <div className="text-[11px] font-semibold text-foreground">Privacy first</div>
             </div>
           </div>
 
           <div className="data-stream data-stream--one"><Binary className="h-3 w-3" /> 01-AF-92</div>
-          <div className="data-stream data-stream--two">PKT VERIFIED</div>
+          <div className="data-stream data-stream--two">DEMO SIGNAL</div>
           <div className="stage-floor" />
         </div>
 

@@ -2,7 +2,7 @@
 
 # 🛡️ SafeByte
 
-### Enterprise-Grade Cybersecurity Platform
+### Founder-Led Cybersecurity Lab & Tooling Platform
 
 **Penetration Testing · Threat Detection · Security Tooling · AI-Powered Defense**
 
@@ -46,12 +46,10 @@
 
 ## 🏢 About SafeByte
 
-SafeByte is a **cybersecurity consultancy and tooling company** founded with a single mission: make enterprise-grade security accessible to every organisation, regardless of size. We combine hands-on offensive security expertise with a suite of proprietary tools that run directly in the browser — no server, no data leakage, no friction.
+SafeByte is a **founder-led cybersecurity startup and tooling lab**, founded in 2024 to make practical security research accessible to startups and growing technical teams. The two founders work directly on client engagements while building browser and desktop security tools.
 
-Our team holds certifications including **OSCP, CISSP, CEH, CISM, and AWS Security Specialty**, with over 4,000 security assessments delivered across financial services, healthcare, critical infrastructure, and technology sectors.
+The founders currently list **CEH, CPENT, and NASA P1 recognition**. SafeByte has served three early clients; their identities remain private unless publication is explicitly approved.
 
-> *"SafeByte transformed our security posture. Their team identified critical vulnerabilities we'd missed for years and deployed solutions within days."*
-> — Rachel Matsuda, CTO · Vaultline Technologies
 
 ---
 
@@ -64,7 +62,7 @@ This repository is the **SafeByte V2 web platform** — a full-stack cybersecuri
 3. **A download hub** for desktop (macOS + Windows) security applications
 4. **An AI-powered chatbot** for visitor Q&A
 
-All browser-based tools perform analysis **entirely within the user's browser**. No file, address, or scan result is ever sent to SafeByte's servers.
+The tools are **local-first**. Files remain on the user's device where stated, while specific hashes, URLs, software identifiers, or wallet addresses may be sent to disclosed third-party reputation and blockchain APIs when a lookup requires it.
 
 ---
 
@@ -613,12 +611,12 @@ SafeByte offers the following professional security services (detailed at `/serv
 
 | Service | Description |
 |---|---|
-| **Penetration Testing** | OSCP-certified simulated attacks — web, API, mobile, internal network, social engineering |
+| **Penetration Testing** | Founder-led manual testing across approved web, API, mobile, and internal-network scopes |
 | **Malware Analysis** | Reverse engineering lab — static/dynamic analysis, behavioral sandboxing, IoC extraction |
 | **Risk Assessment** | NIST CSF / ISO 27001 / CIS Controls mapping, threat modeling, executive risk reports |
-| **Network Security** | Firewall/IDS/IPS configuration, network segmentation, traffic analysis, 24/7 SOC |
+| **Network Security** | Firewall and detection review, network segmentation, and traffic-analysis guidance |
 | **Cloud Security** | AWS/Azure/GCP config audits, IAM review, container security, compliance automation |
-| **Incident Response** | 24/7 rapid response, digital forensics, evidence preservation, post-incident review |
+| **Incident Response** | Priority founder review, forensic triage, evidence-handling guidance, and post-incident review |
 
 ---
 
@@ -626,7 +624,7 @@ SafeByte offers the following professional security services (detailed at `/serv
 
 | Route | Component | Description |
 |---|---|---|
-| `/` | `Index.tsx` | Landing page — hero, services overview, tools highlight, testimonial, CTA |
+| `/` | `Index.tsx` | Landing page — founder-led positioning, services overview, tools highlight, and CTA |
 | `/about` | `About.tsx` | Company story, mission/vision, core values (Integrity, Precision, Vigilance, Partnership), certifications |
 | `/services` | `Services.tsx` | Detailed service cards with feature lists |
 | `/tools` | `Tools.tsx` | Tools catalogue split into System Auditing Tools (desktop) and Web Tools |

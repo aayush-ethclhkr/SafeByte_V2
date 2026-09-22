@@ -22,7 +22,7 @@ const detailedServices = [
     code: "SVC-01",
     tier: "CORE CAPABILITY",
     tagline: "Manual adversary simulation across web, API, mobile, and internal networks.",
-    desc: "Our OSCP and CRTP-certified team executes controlled, real-world exploitation against your perimeter. Unlike automated point-and-click scanners, our testing identifies complex multi-step authorization flaws, cryptographic implementation errors, business logic vulnerabilities, and privilege escalation chains.",
+    desc: "Our founders execute controlled, manual testing across your approved scope. Unlike automated point-and-click scans, the engagement focuses on authorization flaws, insecure implementations, business-logic weaknesses, and reproducible exploit paths.",
     methodology: "NIST SP 800-115 · OWASP ASVS v4.0 · PTES Standard",
     features: [
       "Web Applications & Single-Page Apps (SPA)",
@@ -41,11 +41,11 @@ const detailedServices = [
   {
     id: "redteam",
     icon: Bot,
-    title: "AI Red Teaming & Adversary Emulation",
+    title: "Adversary Emulation & Detection Review",
     code: "SVC-02",
-    tier: "ADVERSARY SIMULATION",
-    tagline: "Stress-test blue team detection, SIEM correlation, and SOC responsiveness.",
-    desc: "We emulate Nation-State and Advanced Persistent Threat (APT) attack lifecycles mapped directly to the MITRE ATT&CK® matrix. From initial spear-phishing payload delivery and endpoint defense evasion to domain controller compromise, we evaluate how well your people, processes, and detection tooling respond under real fire.",
+    tier: "SCOPED ATTACK SIMULATION",
+    tagline: "Evaluate logging, detection, escalation, and response against realistic attack paths.",
+    desc: "We design focused adversary-emulation exercises mapped to the MITRE ATT&CK® matrix. Each exercise is scoped to your environment and evaluates how well people, processes, and detection tooling respond to realistic attack paths.",
     methodology: "MITRE ATT&CK Framework · Cyber Kill Chain®",
     features: [
       "Custom EDR & AV Payload Evasion Development",
@@ -58,7 +58,7 @@ const detailedServices = [
       "End-to-End Attack Path Timeline Log",
       "Blue Team Detection Gap Analysis",
       "SIEM & EDR Custom Detection Rule Package",
-      "Executive Board Presentation on Enterprise Resilience",
+      "Technical debrief and prioritized improvement plan",
     ],
   },
   {
@@ -78,7 +78,7 @@ const detailedServices = [
       "Reentrancy & Integer Arithmetic Verification",
     ],
     deliverables: [
-      "Mathematical Proof of Contract Safety",
+      "Reproducible findings with clear test cases",
       "Interactive Multi-Chain Fund Flow Graph",
       "High-Risk Wallet Attribution & Forensic Dossier",
       "Gas Optimization & Security Refactoring Advisory",
@@ -129,7 +129,7 @@ export default function Services() {
             className="text-base sm:text-lg text-muted-foreground leading-relaxed animate-fade-up"
             style={{ animationDelay: "200ms" }}
           >
-            Every SafeByte service is conducted manually by certified practitioners (OSCP, CEH, CRTP) with deterministic proof-of-concept testing, actionable code fixes, and guaranteed 30-day free retesting.
+            Every SafeByte engagement is founder-led and manually validated, with reproducible proof-of-concept testing, practical remediation guidance, and a complimentary retest within the agreed remediation window.
           </p>
         </div>
       </section>

@@ -10,7 +10,7 @@ const tools = [
     icon: Bitcoin,
     name: "CryptoTrace AI",
     category: "WEB ENGINE",
-    desc: "Heuristic multi-chain blockchain intelligence engine. Real-time balance and transaction indexing, high-risk darknet/OFAC wallet registry cross-checks, and automated risk scoring across 7 major networks. Operates 100% in your browser without data exfiltration.",
+    desc: "Heuristic multi-chain blockchain intelligence engine. Real-time balance and transaction indexing, high-risk darknet/OFAC wallet registry cross-checks, and automated risk scoring across 7 major networks. Runs from your browser; wallet addresses are sent only to the disclosed blockchain data providers required for lookup.",
     version: "v1.0.0",
     platform: "Client-Side Browser · Zero Install",
     webTool: "/tools/crypto-trace",
@@ -239,7 +239,7 @@ export default function Tools() {
                 <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Browser-Based Security Engines</h2>
               </div>
               <span className="text-xs font-mono text-muted-foreground hidden sm:inline">
-                Zero Installation · 100% Client-Side Privacy
+                Zero Installation · Local-First Analysis
               </span>
             </div>
           </ScrollReveal>

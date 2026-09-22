@@ -21,7 +21,7 @@ const Footer = () => (
         <div className="flex items-center gap-3">
           <span className="flex h-2.5 w-2.5 rounded-full bg-red-500 animate-pulse" />
           <span className="font-mono font-semibold text-foreground tracking-wide">
-            24/7 ACTIVE INCIDENT &amp; BREACH RESPONSE DESK
+            FOUNDER-LED SECURITY SCOPING
           </span>
         </div>
         <div className="flex items-center gap-6 font-mono text-muted-foreground">
@@ -33,7 +33,7 @@ const Footer = () => (
           </a>
           <span className="hidden md:inline text-muted-foreground/30">|</span>
           <span className="hidden md:flex items-center gap-1 text-emerald-500 dark:text-emerald-400">
-            <Radio className="h-3.5 w-3.5" /> MTTR &lt; 15 MIN
+            <Radio className="h-3.5 w-3.5" /> RESPONSE TARGET &lt; 24 HOURS
           </span>
         </div>
       </div>
@@ -53,11 +53,11 @@ const Footer = () => (
             </span>
           </Link>
           <p className="text-xs text-muted-foreground leading-relaxed max-w-sm">
-            SafeByte is an offensive cybersecurity consultancy delivering adversary simulation, penetration testing, smart contract auditing, and rapid incident response to high-stakes organizations worldwide.
+            SafeByte is an independent cybersecurity startup founded in 2024. Our founders build practical security tools and deliver focused penetration testing, blockchain intelligence, and security research for growing teams.
           </p>
           <div className="pt-2 text-[11px] font-mono text-muted-foreground/80 space-y-1">
             <div>METHODOLOGIES: NIST SP 800-115 · MITRE ATT&amp;CK · OWASP</div>
-            <div>VERIFIED CREDENTIALS: OSCP · CEH · CRTP · CISSP</div>
+            <div>FOUNDER CREDENTIALS: CEH · CPENT · NASA P1 RECOGNITION</div>
           </div>
         </div>
 

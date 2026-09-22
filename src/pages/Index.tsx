@@ -23,10 +23,10 @@ import { useAuth } from "@/context/AuthContext";
 const capabilities = [
   {
     icon: Search,
-    title: "Offensive Penetration Testing",
+    title: "Manual Penetration Testing",
     code: "CAP-01",
     tag: "MANUAL EXPLOITATION",
-    desc: "Simulate advanced persistent threats across Web, API, Mobile, and Hybrid Infrastructure. We eliminate automated false positives through manual exploitation, privilege escalation, and business logic bypasses.",
+    desc: "Founder-led testing across web, API, mobile, and approved infrastructure scopes. Findings are manually validated and documented with reproducible evidence and practical remediation guidance.",
     deliverables: ["Step-by-step exploit reproduction", "CVSS v3.1 + EPSS risk score", "Direct developer patch guidance"],
     mitre: "Initial Access · Execution · Defense Evasion",
     link: "/contact",
@@ -34,10 +34,10 @@ const capabilities = [
   },
   {
     icon: Bot,
-    title: "Autonomous AI Red Teaming",
+    title: "Adversary Emulation & Detection Review",
     code: "CAP-02",
-    tag: "ADVERSARY SIMULATION",
-    desc: "Continuous adversarial simulation testing multi-stage attack chains. Stress-test SOC detection engineering, SIEM correlation rules, and endpoint detection response against novel zero-day techniques.",
+    tag: "SCOPED ATTACK SIMULATION",
+    desc: "Focused, MITRE-mapped exercises that test realistic attack paths and help teams identify gaps in logging, alerting, escalation, and response procedures.",
     deliverables: ["Detection efficacy score", "MITRE ATT&CK coverage heatmap", "Blue team resilience debrief"],
     mitre: "Persistence · Lateral Movement · Exfiltration",
     link: "/contact",
@@ -45,7 +45,7 @@ const capabilities = [
   },
   {
     icon: Bitcoin,
-    title: "CryptoTrace Blockchain Intelligence",
+    title: "Blockchain Intelligence & Contract Review",
     code: "CAP-03",
     tag: "WEB3 & DEFI AUDITS",
     desc: "Heuristic multi-chain transaction tracing, smart contract vulnerability triaging, and OFAC high-risk darknet wallet mapping across 7 blockchain networks with real-time risk scoring.",
@@ -56,10 +56,10 @@ const capabilities = [
   },
   {
     icon: Eye,
-    title: "FraudEye Scanner",
+    title: "FraudEye Analysis",
     code: "CAP-04",
-    tag: "AI FRAUD PREVENTION",
-    desc: "Three-in-one fraud detection — UPI QR payment scam detection, deepfake voice anomaly analysis using Web Audio API, and phishing URL reputation checks via VirusTotal. Runs entirely in your browser.",
+    tag: "MULTI-VECTOR FRAUD",
+    desc: "Three-in-one fraud detection for UPI QR scams, suspicious voice patterns, and phishing URLs, combining local analysis with clearly disclosed reputation lookups.",
     deliverables: ["UPI scam mode detection", "Deepfake voice suspicion score", "URL phishing & injection analysis"],
     mitre: "Fraud Detection · Social Engineering",
     link: "/tools/fraud-scanner",
@@ -109,23 +109,22 @@ export default function Index() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                 </span>
-                <span className="tracking-[0.14em]">ENTERPRISE DEFENSE · ALWAYS ON</span>
+                <span className="tracking-[0.14em]">FOUNDER-LED SECURITY LAB · EST. 2024</span>
               </div>
 
               <h1
                 className="text-4xl sm:text-6xl lg:text-[4.35rem] font-semibold tracking-[-0.055em] leading-[0.98] text-foreground animate-fade-up"
                 style={{ animationDelay: "100ms" }}
               >
-                Security built for the threats{" "}
-                <span className="hero-gradient-text">you have not seen yet.</span>
+                Security research built to{" "}
+                <span className="hero-gradient-text">find what scanners miss.</span>
               </h1>
 
               <p
                 className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-[36rem] animate-fade-up"
                 style={{ animationDelay: "200ms" }}
               >
-                Offensive security, continuous red teaming, and rapid breach response - engineered as one intelligent defense layer
-                for modern enterprises.
+                Founder-led penetration testing, practical security tooling, and focused adversary research for startups and growing technical teams.
               </p>
 
               <div
@@ -162,12 +161,12 @@ export default function Index() {
                   <div className="text-[11px] text-muted-foreground">Manual Exploit Validation</div>
                 </div>
                 <div>
-                  <div className="text-xl sm:text-2xl font-bold font-mono text-primary">&lt; 15 min</div>
-                  <div className="text-[11px] text-muted-foreground">Incident Response SLA</div>
+                  <div className="text-xl sm:text-2xl font-bold font-mono text-primary">&lt; 24 h</div>
+                  <div className="text-[11px] text-muted-foreground">Founder Response Target</div>
                 </div>
                 <div>
-                  <div className="text-xl sm:text-2xl font-bold font-mono text-foreground">Zero</div>
-                  <div className="text-[11px] text-muted-foreground">False-Positive Guarantee</div>
+                  <div className="text-xl sm:text-2xl font-bold font-mono text-foreground">3</div>
+                  <div className="text-[11px] text-muted-foreground">Early Clients Served</div>
                 </div>
               </div>
             </div>
@@ -303,7 +302,7 @@ export default function Index() {
               {
                 icon: Shield,
                 name: "FraudEye Scanner",
-                tag: "AI FRAUD PREVENTION",
+                tag: "MULTI-VECTOR FRAUD",
                 route: "/tools/fraud-scanner",
                 desc: "UPI QR code scam detector, deepfake voice anomaly identification, and phishing URL analyzer.",
               },
@@ -354,7 +353,7 @@ export default function Index() {
             </h2>
 
             <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl mx-auto">
-              Speak directly with an OSCP-certified security engineer. We will review your target scope, regulatory requirements, and deliver a tailored testing plan within 24 hours.
+              Speak directly with a SafeByte founder. We will review your scope, priorities, and constraints, then share a practical testing plan within 24 hours.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">

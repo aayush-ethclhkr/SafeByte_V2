@@ -12,7 +12,7 @@ const SUGGESTED = [
 const WELCOME: Message = {
   id: "welcome",
   role: "bot",
-  text: "SafeByte Cyber Defense AI Assistant initialized.\n\nI can provide real-time details on our **Penetration Testing**, **Adversary Simulation**, **CryptoTrace Intelligence**, **Incident Response SLAs**, and **Scoping consultations**.\n\nHow can I assist your security team?",
+  text: "SafeByte security assistant ready.\n\nI can provide real-time details on our **Penetration Testing**, **Adversary Simulation**, **CryptoTrace Intelligence**, **Incident Response SLAs**, and **Scoping consultations**.\n\nHow can I assist your security team?",
 };
 
 function formatText(text: string) {
@@ -106,11 +106,11 @@ export default function ChatBot() {
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <p className="text-xs font-bold text-foreground font-mono leading-none">SAFEBYTE DEFENSE AI</p>
+              <p className="text-xs font-bold text-foreground font-mono leading-none">SAFEBYTE SECURITY GUIDE</p>
             </div>
             <p className="text-[10px] text-emerald-500 dark:text-emerald-400 font-mono mt-1 flex items-center gap-1">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 inline-block animate-pulse" />
-              SOC SECURE PROTOCOL ACTIVE
+              FOUNDER-LED LAB · EST. 2024
             </p>
           </div>
           <button

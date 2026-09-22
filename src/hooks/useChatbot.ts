@@ -9,48 +9,42 @@ export interface Message {
 const KB = {
   company: {
     name: "SafeByte",
-    founded: 2018,
+    founded: 2024,
     tagline: "Securing the Digital Future",
     description:
-      "SafeByte is a full-spectrum cybersecurity consultancy and tooling company. We started as a specialized penetration testing firm in 2018 and have grown into a trusted security partner for enterprises, governments, and high-growth startups.",
-    team: "80+ security engineers, researchers, and analysts",
-    offices: "6 global offices",
-    clientsProtected: "340+",
-    assessmentsDone: "4,000+",
-    uptime: "99.7%",
-    responseTime: "under 4 minutes",
-    threatsNeutralized: "2,847",
-    industries: "financial services, healthcare, critical infrastructure, and technology",
+      "SafeByte is a founder-led cybersecurity startup and security tooling lab founded in 2024. We work directly with a small number of early clients while building practical browser and desktop security tools.",
+    team: "2 hands-on founders",
+    offices: "Founder base in Meerut, India",
+    clientsProtected: "3 early clients",
+    assessmentsDone: "3 early client engagements",
+    uptime: "No public uptime claim",
+    responseTime: "within 24 hours",
+    threatsNeutralized: "No inflated public metric",
+    industries: "early-stage technology, fintech, and Web3",
     location: "Meerut, Uttar Pradesh, India",
   },
 
   mission:
-    "Make enterprise security accessible and effective. We believe every organization, regardless of size, deserves access to world-class security expertise. Our mission is to democratize advanced threat detection and response capabilities through innovative tools and dedicated partnerships.",
+    "Make careful, practical security work accessible to startups and growing technical teams through founder-led testing, transparent research, and useful tools.",
 
   vision:
     "A world where digital trust is the default — where organizations can innovate confidently knowing their digital infrastructure is resilient against evolving threats.",
 
   values: [
     { name: "Integrity",   desc: "We operate with transparency and uphold the highest ethical standards in every engagement." },
-    { name: "Precision",   desc: "Our methodologies are refined through thousands of real-world assessments across industries." },
-    { name: "Vigilance",   desc: "Threats don't sleep, neither do we. Continuous monitoring is embedded in everything we build." },
+    { name: "Precision",   desc: "We validate findings manually and document evidence that engineering teams can reproduce." },
+    { name: "Vigilance",   desc: "We keep our methods and tools current as attack techniques and platforms evolve." },
     { name: "Partnership", desc: "We don't just deliver reports — we embed with your team to build lasting security culture." },
   ],
 
-  certifications: ["OSCP", "CISSP", "CEH", "CISM", "AWS Security Specialty", "ISO 27001"],
+  certifications: ["CEH", "CPENT", "NASA P1 recognition"],
 
-  trustedBy: ["Meridian Corp", "Vaultline", "Arcsys", "Northgate Labs", "Hexacore"],
-
-  testimonial: {
-    quote: "SafeByte transformed our security posture. Their team identified critical vulnerabilities we'd missed for years and deployed solutions within days.",
-    author: "Rachel Matsuda",
-    role: "CTO, Vaultline Technologies",
-  },
+  trustedBy: ["an early-stage fintech team", "a Web3 research team", "a local technology business"],
 
   contact: {
     email: "team.safebyte@gmail.com",
     phone: "+91 89238 17932",
-    emergency: "+1 (555) 742-9911",
+    emergency: "+91 89238 17932",
     address: "Meerut, Uttar Pradesh, India",
     responseTime: "within 24 hours",
     freeOffer: "free initial security assessment / consultation",
@@ -60,7 +54,7 @@ const KB = {
     {
       name: "Penetration Testing",
       keywords: ["pentest", "penetration", "pen test", "red team", "offensive"],
-      desc: "Our OSCP-certified team simulates real-world attack scenarios across web applications, APIs, mobile apps, and internal networks. Every test includes manual exploitation, privilege escalation attempts, and detailed proof-of-concept documentation — not just automated scans.",
+      desc: "Our founders conduct scoped, manual testing across web applications, APIs, mobile apps, and internal networks. Each engagement focuses on reproducible findings and practical remediation rather than automated scan volume.",
       features: ["Web & API Testing", "Internal Network Testing", "Mobile Application Testing", "Social Engineering Assessments"],
     },
     {
@@ -79,7 +73,7 @@ const KB = {
       name: "Network Security",
       keywords: ["network", "firewall", "ids", "ips", "intrusion", "soc", "segmentation"],
       desc: "Design and deploy robust network defenses including firewall configuration, segmentation strategies, and intrusion detection systems. Continuous monitoring ensures threats are identified and contained in real time.",
-      features: ["Firewall & IDS/IPS Configuration", "Network Segmentation", "Traffic Analysis", "24/7 SOC Monitoring"],
+      features: ["Firewall & IDS/IPS Review", "Network Segmentation", "Traffic Analysis", "Detection Readiness Review"],
     },
     {
       name: "Cloud Security",
@@ -90,8 +84,8 @@ const KB = {
     {
       name: "Incident Response",
       keywords: ["incident", "breach", "hacked", "attack", "response", "forensic", "compromised", "crisis"],
-      desc: "When a breach occurs, our rapid response team deploys within hours to contain the threat, preserve evidence, and restore operations. Post-incident, we conduct thorough forensic analysis and deliver recommendations to prevent recurrence.",
-      features: ["24/7 Rapid Response", "Digital Forensics", "Evidence Preservation", "Post-Incident Review"],
+      desc: "For urgent incidents, our founders review the available context, help establish next steps, and coordinate a clearly scoped response based on availability and the nature of the incident.",
+      features: ["Priority Incident Review", "Forensic Triage", "Evidence Handling Guidance", "Post-Incident Review"],
     },
   ],
 
@@ -239,7 +233,7 @@ const KB = {
   ],
 
   pages: [
-    { name: "Home",     path: "/",        desc: "Landing page with hero, services overview, tools highlight, trusted clients, testimonial, and CTA" },
+    { name: "Home",     path: "/",        desc: "Founder-led security lab overview, capabilities, tools, and consultation CTA" },
     { name: "About",    path: "/about",   desc: "Company background, mission, vision, core values, team certifications" },
     { name: "Services", path: "/services",desc: "Detailed breakdown of all 6 security services with feature lists" },
     { name: "Tools",    path: "/tools",   desc: "Full tools catalogue — System Auditing Tools (desktop) and Web Tools sections" },
@@ -271,12 +265,12 @@ export function getBotResponse(userInput: string): string {
 
   // ── Emergency / active incident ─────────────────────────────────────────────
   if (match(q, ["emergency", "breach", "hacked", "attack", "urgent", "crisis", "compromised", "ransomware hit", "under attack"])) {
-    return `🚨 **Active Security Incident?**\n\nCall our 24/7 emergency hotline immediately:\n\n📞 **${KB.contact.emergency}**\n\nOur Incident Response team deploys within hours to:\n• Contain the threat\n• Preserve forensic evidence\n• Restore operations\n• Conduct post-incident analysis\n\nYou can also email ${KB.contact.email} with URGENT in the subject line.`;
+    return `🚨 **Active Security Incident?**\n\nCall SafeByte at **${KB.contact.emergency}** or submit a priority request through the Contact page.\n\nA founder will review the available context as soon as possible. Please do not send passwords, API keys, or sensitive evidence through the website form.`;
   }
 
   // ── Contact ─────────────────────────────────────────────────────────────────
   if (match(q, ["contact", "email", "phone", "reach", "address", "location", "office", "where are you", "get in touch"])) {
-    return `📬 **Contact SafeByte**\n\n• **Email:** ${KB.contact.email}\n• **Phone:** ${KB.contact.phone}\n• **Office:** ${KB.contact.address}\n• **Emergency Hotline (24/7):** ${KB.contact.emergency}\n\nOr use the Contact form on the website — we respond ${KB.contact.responseTime}. We also offer a **free initial consultation**.`;
+    return `📬 **Contact SafeByte**\n\n• **Email:** ${KB.contact.email}\n• **Phone:** ${KB.contact.phone}\n• **Base:** ${KB.contact.address}\n\nYou can also use the Contact form. A SafeByte founder aims to respond ${KB.contact.responseTime}, and the initial scoping conversation is free.`;
   }
 
   // ── Free consultation / assessment ──────────────────────────────────────────
@@ -287,7 +281,7 @@ export function getBotResponse(userInput: string): string {
   // ── About / company ─────────────────────────────────────────────────────────
   if (match(q, ["about", "who are you", "what is safebyte", "company", "safebyte", "founded", "history", "background", "tell me about"])) {
     const c = KB.company;
-    return `🛡️ **About SafeByte**\n\n${c.description}\n\n• **Founded:** ${c.founded}\n• **Team:** ${c.team}\n• **Global Offices:** ${c.offices}\n• **Clients Protected:** ${c.clientsProtected}\n• **Security Assessments Done:** ${c.assessmentsDone}\n• **Location:** ${c.location}\n• **Industries Served:** ${c.industries}`;
+    return `🛡️ **About SafeByte**\n\n${c.description}\n\n• **Founded:** ${c.founded}\n• **Team:** ${c.team}\n• **Operating Base:** ${c.offices}\n• **Early Clients:** ${c.clientsProtected}\n• **Current Stage:** ${c.assessmentsDone}\n• **Location:** ${c.location}\n• **Industries Served:** ${c.industries}`;
   }
 
   // ── Mission ─────────────────────────────────────────────────────────────────
@@ -308,24 +302,23 @@ export function getBotResponse(userInput: string): string {
 
   // ── Certifications ──────────────────────────────────────────────────────────
   if (match(q, ["cert", "certified", "certification", "oscp", "cissp", "ceh", "cism", "iso 27001", "aws security", "qualification", "credentials"])) {
-    return `🏅 **Team Certifications**\n\nOur team holds: **${KB.certifications.join(", ")}**.\n\nWe've completed over **${KB.company.assessmentsDone}** security assessments across ${KB.company.industries}.`;
+    return `🏅 **Founder Credentials**\n\nThe founders currently list: **${KB.certifications.join(", ")}**.\n\nSafeByte was founded in 2024 and has served three early clients. We do not publish client identities without permission.`;
   }
 
   // ── Stats ───────────────────────────────────────────────────────────────────
   if (match(q, ["stats", "statistics", "numbers", "how many", "how big", "uptime", "response time", "threats neutralized"])) {
     const c = KB.company;
-    return `📊 **SafeByte by the Numbers**\n\n• **Threats Neutralized:** ${c.threatsNeutralized}\n• **Uptime Guaranteed:** ${c.uptime}\n• **Clients Protected:** ${c.clientsProtected}\n• **Avg Response Time:** ${c.responseTime}\n• **Security Assessments Done:** ${c.assessmentsDone}\n• **Team Size:** ${c.team}`;
+    return `📊 **SafeByte Today**\n\n• **Founded:** ${c.founded}\n• **Team:** ${c.team}\n• **Early Clients:** ${c.clientsProtected}\n• **Founder Response Target:** ${c.responseTime}\n• **Operating Base:** ${c.location}\n\nWe intentionally avoid inflated security and client metrics.`;
   }
 
   // ── Trusted clients ─────────────────────────────────────────────────────────
   if (match(q, ["clients", "customers", "trusted by", "who do you work with", "portfolio", "partners"])) {
-    return `🤝 **Trusted By**\n\nLeading organizations including: **${KB.trustedBy.join(", ")}**.\n\nWe work with enterprises, governments, and startups across ${KB.company.industries}.`;
+    return `🤝 **Early Clients**\n\nSafeByte has served three early clients across ${KB.company.industries}. Their identities are kept private because we have not received permission to publish them. References can be discussed during scoping where appropriate.`;
   }
 
   // ── Testimonial ─────────────────────────────────────────────────────────────
   if (match(q, ["testimonial", "review", "feedback", "what do clients say", "recommendation", "case study"])) {
-    const t = KB.testimonial;
-    return `⭐ **Client Testimonial**\n\n"${t.quote}"\n\n— **${t.author}**, ${t.role}`;
+    return `⭐ **Client References**\n\nSafeByte does not publish client names or testimonials without explicit permission. We have served three early clients since founding in 2024 and can discuss suitable references during a private scoping conversation.`;
   }
 
   // ── All services ────────────────────────────────────────────────────────────

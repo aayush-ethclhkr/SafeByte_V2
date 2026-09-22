@@ -115,7 +115,7 @@ const Navbar = () => {
             <div className="flex items-center justify-between pb-3 mb-1 border-b border-border/60 text-xs font-mono">
               <span className="text-muted-foreground">SYSTEM STATUS</span>
               <span className="text-emerald-500 dark:text-emerald-400 flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" /> 24/7 MONITORING
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" /> FOUNDER-LED · EST. 2024
               </span>
             </div>
 

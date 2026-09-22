@@ -59,7 +59,7 @@ export default function Contact() {
         EMAILJS_PUBLIC_KEY
       );
 
-      toast.success("Security scoping request submitted. Our engineers will respond within 24 hours.");
+      toast.success("Security scoping request submitted. A SafeByte founder will respond within 24 hours.");
       formRef.current.reset();
     } catch (err) {
       console.error(err);
@@ -88,7 +88,7 @@ export default function Contact() {
             className="text-base sm:text-lg text-muted-foreground leading-relaxed animate-fade-up"
             style={{ animationDelay: "200ms" }}
           >
-            All communications are encrypted and covered under standard mutual non-disclosure agreements. An OSCP-certified security engineer will respond within 24 hours.
+            Your request is transmitted securely and handled confidentially. A SafeByte founder will review the scope and respond within 24 hours.
           </p>
         </div>
       </section>
@@ -109,10 +109,10 @@ export default function Contact() {
                       </div>
                       <div>
                         <div className="text-xs font-mono font-bold text-foreground">
-                          {isEmergency ? "ACTIVE BREACH EMERGENCY" : "SCHEDULED ASSESSMENT"}
+                          {isEmergency ? "PRIORITY INCIDENT REQUEST" : "SCHEDULED ASSESSMENT"}
                         </div>
                         <div className="text-[11px] text-muted-foreground">
-                          {isEmergency ? "Prioritizes immediate < 15-min incident triage" : "Standard scoping response within 24 hours"}
+                          {isEmergency ? "Flags your request for priority founder review" : "Standard founder response within 24 hours"}
                         </div>
                       </div>
                     </div>
@@ -126,7 +126,7 @@ export default function Contact() {
                           : "border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground"
                       }`}
                     >
-                      {isEmergency ? "Active (Emergency)" : "Toggle Emergency"}
+                      {isEmergency ? "Priority Active" : "Mark Priority"}
                     </button>
                   </div>
 
@@ -206,7 +206,7 @@ export default function Contact() {
                       className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-md transition-all gap-2"
                     >
                       <Send className="h-4 w-4" />
-                      {sending ? "Transmitting Encrypted Request..." : "Submit Scoping Request"}
+                      {sending ? "Sending Confidential Request..." : "Submit Scoping Request"}
                     </Button>
                   </form>
                 </div>
@@ -230,7 +230,7 @@ export default function Contact() {
                         <Mail className="h-4 w-4" />
                       </div>
                       <div>
-                        <div className="font-bold text-foreground">Encrypted Dispatch Email</div>
+                        <div className="font-bold text-foreground">Direct Founder Email</div>
                         <a href="mailto:team.safebyte@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
                           team.safebyte@gmail.com
                         </a>
@@ -250,10 +250,10 @@ export default function Contact() {
 
                   <div className="pt-4 border-t border-border/60 space-y-2 text-[11px] font-mono text-muted-foreground">
                     <div className="flex items-center gap-2 text-emerald-500 dark:text-emerald-400">
-                      <CheckCircle2 className="h-3.5 w-3.5" /> Mutual NDA automatically provided
+                      <CheckCircle2 className="h-3.5 w-3.5" /> Confidentiality agreement available before sensitive data exchange
                     </div>
                     <div className="flex items-center gap-2">
-                      <Key className="h-3.5 w-3.5 text-primary" /> PGP Public Key available upon request
+                      <Key className="h-3.5 w-3.5 text-primary" /> Do not include credentials or sensitive evidence in this form
                     </div>
                   </div>
                 </div>

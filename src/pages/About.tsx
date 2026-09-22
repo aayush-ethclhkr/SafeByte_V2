@@ -33,7 +33,7 @@ const pillars = [
   {
     icon: Lock,
     title: "Strict Confidentiality & Mutual NDA",
-    desc: "All testing telemetry, vulnerability findings, and source code are handled strictly on air-gapped or encrypted systems with verified cryptographic wiping protocols.",
+    desc: "Client findings and source material are handled in access-controlled workspaces with agreed retention periods and clear deletion procedures.",
   },
   {
     icon: Eye,
@@ -56,17 +56,36 @@ export default function About() {
             className="text-3xl sm:text-5xl font-bold tracking-tight text-foreground leading-[1.1] mb-6 animate-fade-up"
             style={{ animationDelay: "100ms" }}
           >
-            Built by Offensive Practitioners, Trusted by High-Risk Organizations
+            A Founder-Led Security Lab, Built From the Ground Up
           </h1>
           <p
             className="text-base sm:text-lg text-muted-foreground leading-relaxed animate-fade-up"
             style={{ animationDelay: "200ms" }}
           >
-            SafeByte was established with a singular mission: to provide uncompromising, manual offensive security assessments that protect critical infrastructure before adversaries strike.
+            SafeByte was founded in 2024 by two security practitioners with a shared goal: make careful, manual security research more accessible to startups and growing technical teams.
           </p>
         </div>
       </section>
 
+      <section className="border-b border-border bg-card/30">
+        <div className="container py-8">
+          <div className="grid sm:grid-cols-3 gap-px overflow-hidden rounded-2xl border border-border bg-border max-w-4xl mx-auto">
+            {[
+              { value: "2024", label: "SafeByte founded" },
+              { value: "2", label: "Hands-on founders" },
+              { value: "3", label: "Early clients served" },
+            ].map((item) => (
+              <div key={item.label} className="bg-background/95 px-6 py-6 text-center">
+                <div className="font-mono text-2xl font-bold text-primary">{item.value}</div>
+                <div className="mt-1 text-xs text-muted-foreground">{item.label}</div>
+              </div>
+            ))}
+          </div>
+          <p className="mx-auto mt-4 max-w-2xl text-center text-xs leading-relaxed text-muted-foreground">
+            We are intentionally small. Client work is handled directly by the founders, and client identities remain private unless permission to publish is explicitly granted.
+          </p>
+        </div>
+      </section>
       {/* ── Mission & Engineering Philosophy ─────────────────────────────── */}
       <section className="py-20 border-b border-border bg-muted/30">
         <div className="container">
@@ -77,13 +96,13 @@ export default function About() {
                   Our Engineering Doctrine
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                  The Scanner Era is Dead. Human Adversary Emulation is Essential.
+                  Automated Scanning Is a Starting Point, Not the Answer.
                 </h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Modern threat actors don't run generic vulnerability scanners and walk away. They reverse-engineer proprietary APIs, chain seemingly harmless info disclosures into remote code execution, and manipulate distributed blockchain state.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  SafeByte operates on the exact same adversarial mindset. When we test your infrastructure, we test it like a persistent, well-funded adversary with zero assumptions and complete technical rigor.
+                  SafeByte adds the human reasoning that automated tools cannot provide. Every engagement is scoped carefully, tested responsibly, and translated into fixes a product team can actually ship.
                 </p>
               </div>
             </ScrollReveal>
@@ -129,7 +148,7 @@ export default function About() {
                 Security Leadership &amp; Researchers
               </h2>
               <p className="text-sm text-muted-foreground">
-                Meet the offensive engineers responsible for safeguarding critical infrastructure, decentralized protocols, and enterprise networks.
+                Meet the two founders building SafeByte, conducting its research, and working directly with every early client.
               </p>
             </div>
           </ScrollReveal>
