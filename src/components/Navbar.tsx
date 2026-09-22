@@ -19,12 +19,12 @@ const Navbar = () => {
   const { user, logout } = useAuth();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl transition-all">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-background/70 backdrop-blur-2xl transition-all shadow-[0_12px_50px_rgba(0,0,0,0.12)]">
       <div className="container flex h-16 sm:h-18 items-center justify-between">
         {/* Logo & Status */}
         <div className="flex items-center gap-4">
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="relative flex items-center justify-center h-9 w-9 rounded-lg bg-primary/10 border border-primary/30 group-hover:border-primary/60 group-hover:shadow-[0_0_15px_hsl(var(--primary)/0.3)] transition-all">
+            <div className="logo-cube relative flex items-center justify-center h-9 w-9 rounded-lg bg-primary/10 border border-primary/30 group-hover:border-primary/60 transition-all">
               <Shield className="h-5 w-5 text-primary transition-transform group-hover:scale-105" />
               <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-primary animate-pulse" />
             </div>
@@ -43,16 +43,16 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-1 p-1 rounded-xl border border-border/60 bg-card/35 shadow-inner backdrop-blur-xl">
           {navLinks.map((link) => {
             const isActive = pathname === link.to;
             return (
               <Link
                 key={link.to}
                 to={link.to}
-                className={`px-3.5 py-1.5 text-xs lg:text-sm font-medium rounded-md transition-all ${
+                className={`px-3.5 py-1.5 text-xs lg:text-sm font-medium rounded-lg transition-all ${
                   isActive
-                    ? "text-primary bg-primary/10 border border-primary/20 font-semibold"
+                    ? "text-primary bg-primary/10 shadow-[inset_0_0_0_1px_hsl(var(--primary)/0.18),0_4px_14px_hsl(var(--primary)/0.08)] font-semibold"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
                 }`}
               >

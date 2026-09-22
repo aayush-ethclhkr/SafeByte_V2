@@ -55,10 +55,10 @@ export default function TiltCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
-        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateZ(${isHovered ? "6px" : "0px"})`,
+        transform: `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(${isHovered ? "-7px" : "0px"}) translateZ(${isHovered ? "10px" : "0px"})`,
         transition: isHovered ? "transform 0.1s ease-out" : "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
       }}
-      className={`relative rounded-xl border border-border bg-card/90 backdrop-blur-md overflow-hidden transition-colors hover:border-primary/40 shadow-xl ${className}`}
+      className={`premium-card relative rounded-2xl border border-border/80 bg-card/75 backdrop-blur-xl overflow-hidden transition-colors hover:border-primary/35 ${className}`}
     >
       {/* Dynamic Cursor Spotlight / Glare */}
       <div

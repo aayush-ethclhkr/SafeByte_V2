@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "@/components/ScrollReveal";
-import NetworkTopologyCanvas from "@/components/NetworkTopologyCanvas";
+import CyberDefenseCore from "@/components/CyberDefenseCore";
 import TiltCard from "@/components/TiltCard";
 import { useAuth } from "@/context/AuthContext";
 
@@ -95,36 +95,37 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/20 selection:text-primary">
       {/* ── SECTION 1: HERO ──────────────────────────────────────────────────── */}
-      <section className="relative pt-28 pb-20 md:pt-40 md:pb-28 overflow-hidden border-b border-border">
-        <div className="absolute inset-0 cyber-grid opacity-70 pointer-events-none" />
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/[0.07] blur-[120px] pointer-events-none rounded-full" />
+      <section className="hero-section relative pt-28 pb-20 md:pt-40 md:pb-32 overflow-hidden border-b border-border/60">
+        <div className="absolute inset-0 cyber-grid cyber-grid-fade pointer-events-none" />
+        <div className="hero-aurora hero-aurora--one" />
+        <div className="hero-aurora hero-aurora--two" />
 
         <div className="container relative z-10">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             {/* Left Content Column */}
-            <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono animate-fade-up">
+            <div className="lg:col-span-6 space-y-7">
+              <div className="eyebrow-pill animate-fade-up">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                 </span>
-                <span className="tracking-wide">THREAT SURFACE DEFENSE ACTIVE · 24/7 SOC</span>
+                <span className="tracking-[0.14em]">ENTERPRISE DEFENSE · ALWAYS ON</span>
               </div>
 
               <h1
-                className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.03em] leading-[1.08] text-foreground animate-fade-up"
+                className="text-4xl sm:text-6xl lg:text-[4.35rem] font-semibold tracking-[-0.055em] leading-[0.98] text-foreground animate-fade-up"
                 style={{ animationDelay: "100ms" }}
               >
-                We Find the Vulnerabilities{" "}
-                <span className="text-primary text-glow-cyan">Adversaries Exploit First.</span>
+                Security built for the threats{" "}
+                <span className="hero-gradient-text">you have not seen yet.</span>
               </h1>
 
               <p
-                className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl animate-fade-up"
+                className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-[36rem] animate-fade-up"
                 style={{ animationDelay: "200ms" }}
               >
-                SafeByte delivers elite offensive penetration testing, continuous red teaming, and rapid breach triage.
-                Engineered for enterprises where a single exploit is not an option.
+                Offensive security, continuous red teaming, and rapid breach response - engineered as one intelligent defense layer
+                for modern enterprises.
               </p>
 
               <div
@@ -133,7 +134,7 @@ export default function Index() {
               >
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 shadow-[0_0_25px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_35px_hsl(var(--primary)/0.5)] transition-all gap-2"
+                  className="premium-button font-semibold px-6 gap-2"
                   asChild
                 >
                   <Link to="/contact">
@@ -143,7 +144,7 @@ export default function Index() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-border bg-card/80 hover:bg-muted/80 text-foreground font-mono text-xs hover:border-primary/40 transition-all gap-2 shadow-sm"
+                  className="border-white/10 bg-card/45 hover:bg-muted/70 text-foreground font-mono text-xs hover:border-primary/40 transition-all gap-2 shadow-sm backdrop-blur-xl"
                   asChild
                 >
                   <Link to="/services">
@@ -153,7 +154,7 @@ export default function Index() {
               </div>
 
               <div
-                className="pt-6 border-t border-border grid grid-cols-3 gap-4 animate-fade-up"
+                className="pt-6 border-t border-border/70 grid grid-cols-3 gap-4 animate-fade-up"
                 style={{ animationDelay: "400ms" }}
               >
                 <div>
@@ -172,8 +173,8 @@ export default function Index() {
             </div>
 
             {/* Right Visual Column */}
-            <div className="lg:col-span-6 animate-fade-up" style={{ animationDelay: "200ms" }}>
-              <NetworkTopologyCanvas />
+            <div className="lg:col-span-6 animate-fade-up lg:pl-4" style={{ animationDelay: "200ms" }}>
+              <CyberDefenseCore />
             </div>
           </div>
         </div>
