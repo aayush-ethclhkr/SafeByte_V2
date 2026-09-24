@@ -45,14 +45,14 @@ const capabilities = [
   },
   {
     icon: Bitcoin,
-    title: "Blockchain Intelligence & Contract Review",
+    title: "Crypto Fraud Attribution",
     code: "CAP-03",
-    tag: "WEB3 & DEFI AUDITS",
-    desc: "Heuristic multi-chain transaction tracing, smart contract vulnerability triaging, and OFAC high-risk darknet wallet mapping across 7 blockchain networks with real-time risk scoring.",
-    deliverables: ["Forensic wallet attribution", "Smart contract audit report", "AML/OFAC compliance dossier"],
-    mitre: "Financial Integrity · Smart Contract Logic",
-    link: "/contact",
-    linkLabel: "Request Scope",
+    tag: "SIH26182 · SIH26183",
+    desc: "Case-based tracing for victim-reported cryptocurrency wallets, with live chain lookups, counterparty evidence, risk scoring, and careful VASP attribution status.",
+    deliverables: ["Complaint-linked wallet trace", "Fund-flow evidence view", "Exportable investigation package"],
+    mitre: "I4C Workflow · VASP Attribution",
+    link: "/tools/crypto-trace",
+    linkLabel: "Launch CryptoTrace",
   },
   {
     icon: Eye,
@@ -109,22 +109,22 @@ export default function Index() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                 </span>
-                <span className="tracking-[0.14em]">FOUNDER-LED SECURITY LAB · EST. 2024</span>
+                <span className="tracking-[0.14em]">SIH 2026 · SIH26182 / SIH26183</span>
               </div>
 
               <h1
                 className="text-4xl sm:text-6xl lg:text-[4.35rem] font-semibold tracking-[-0.055em] leading-[0.98] text-foreground animate-fade-up"
                 style={{ animationDelay: "100ms" }}
               >
-                Security research built to{" "}
-                <span className="hero-gradient-text">find what scanners miss.</span>
+                Trace reported crypto fraud{" "}
+                <span className="hero-gradient-text">to the next actionable lead.</span>
               </h1>
 
               <p
                 className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-[36rem] animate-fade-up"
                 style={{ animationDelay: "200ms" }}
               >
-                Founder-led penetration testing, practical security tooling, and focused adversary research for startups and growing technical teams.
+                SafeByte CryptoTrace links a victim complaint to a suspect wallet, collects available blockchain evidence, checks known risky entities, and prepares the case for verified VASP attribution.
               </p>
 
               <div
@@ -136,8 +136,8 @@ export default function Index() {
                   className="premium-button font-semibold px-6 gap-2"
                   asChild
                 >
-                  <Link to="/contact">
-                    Book a Security Assessment <ArrowRight className="h-4 w-4" />
+                  <Link to="/tools/crypto-trace">
+                    Launch CryptoTrace <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
                 <Button
@@ -146,8 +146,8 @@ export default function Index() {
                   className="border-white/10 bg-card/45 hover:bg-muted/70 text-foreground font-mono text-xs hover:border-primary/40 transition-all gap-2 shadow-sm backdrop-blur-xl"
                   asChild
                 >
-                  <Link to="/services">
-                    <TerminalIcon className="h-3.5 w-3.5 text-primary" /> Explore Capabilities
+                  <Link to="/tools">
+                    <TerminalIcon className="h-3.5 w-3.5 text-primary" /> View Supporting Tools
                   </Link>
                 </Button>
               </div>
@@ -157,16 +157,16 @@ export default function Index() {
                 style={{ animationDelay: "400ms" }}
               >
                 <div>
-                  <div className="text-xl sm:text-2xl font-bold font-mono text-foreground text-glow-cyan">100%</div>
-                  <div className="text-[11px] text-muted-foreground">Manual Exploit Validation</div>
+                  <div className="text-xl sm:text-2xl font-bold font-mono text-foreground text-glow-cyan">3</div>
+                  <div className="text-[11px] text-muted-foreground">Live Chain Data Sources</div>
                 </div>
                 <div>
-                  <div className="text-xl sm:text-2xl font-bold font-mono text-primary">&lt; 24 h</div>
-                  <div className="text-[11px] text-muted-foreground">Founder Response Target</div>
+                  <div className="text-xl sm:text-2xl font-bold font-mono text-primary">7</div>
+                  <div className="text-[11px] text-muted-foreground">Wallet Formats Recognized</div>
                 </div>
                 <div>
-                  <div className="text-xl sm:text-2xl font-bold font-mono text-foreground">3</div>
-                  <div className="text-[11px] text-muted-foreground">Early Clients Served</div>
+                  <div className="text-xl sm:text-2xl font-bold font-mono text-foreground">JSON</div>
+                  <div className="text-[11px] text-muted-foreground">Evidence Package Export</div>
                 </div>
               </div>
             </div>
@@ -280,10 +280,10 @@ export default function Index() {
             {[
               {
                 icon: Bitcoin,
-                name: "CryptoTrace AI",
-                tag: "BLOCKCHAIN INTEL",
+                name: "CryptoTrace VASP",
+                tag: "SIH26182 · 26183",
                 route: "/tools/crypto-trace",
-                desc: "Trace any wallet across 7 chains. Balance lookups, OFAC sanction checks, and heuristic risk scoring.",
+                desc: "Case intake, live wallet evidence, recent fund-flow mapping, registry checks, and cautious VASP attribution.",
               },
               {
                 icon: Eye,

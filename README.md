@@ -2,9 +2,9 @@
 
 # 🛡️ SafeByte
 
-### Founder-Led Cybersecurity Lab & Tooling Platform
+### Crypto Fraud Attribution and Cybersecurity Investigation Platform
 
-**Penetration Testing · Threat Detection · Security Tooling · AI-Powered Defense**
+**SIH26182 · SIH26183 · Wallet Tracing · VASP Attribution · Investigation Evidence**
 
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?style=flat-square&logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
@@ -22,6 +22,7 @@
 ## 📌 Table of Contents
 
 - [About SafeByte](#-about-safebyte)
+- [SIH 2026 Alignment](#-sih-2026-alignment)
 - [Platform Overview](#-platform-overview)
 - [Tech Stack](#-tech-stack)
 - [Project Structure](#-project-structure)
@@ -49,6 +50,31 @@
 SafeByte is a **founder-led cybersecurity startup and tooling lab**, founded in 2024 to make practical security research accessible to startups and growing technical teams. The two founders work directly on client engagements while building browser and desktop security tools.
 
 The founders currently list **CEH, CPENT, and NASA P1 recognition**. SafeByte has served three early clients; their identities remain private unless publication is explicitly approved.
+
+## 🇮🇳 SIH 2026 Alignment
+
+SafeByte's primary SIH track is the **CryptoTrace VASP** investigation workflow. It aligns with two closely related Ministry of Home Affairs and I4C problem statements:
+
+- **SIH26182:** Automated attribution of unknown cryptocurrency wallets to the nearest Virtual Asset Service Provider through blockchain intelligence APIs.
+- **SIH26183:** Real-time identification of fraud-linked cryptocurrency exchanges from victim-reported suspect wallet addresses.
+
+### Working prototype
+
+| Requirement | Current implementation |
+|---|---|
+| Victim or investigator intake | NCRP, SAHYOG, or manual LEA case reference |
+| Wallet and chain recognition | Ethereum, Bitcoin, Tron, Litecoin, Dogecoin, XRP, and Cardano address formats |
+| Live blockchain evidence | Ethereum and Bitcoin balances plus transactions; Tron balance |
+| Fund-flow view | Recent counterparties when the selected endpoint returns transaction details |
+| Risk assessment | Transaction activity, balance tiers, linked cases, and high-risk registry matches |
+| VASP attribution | Evidence-based status; the UI does not claim a VASP match without supporting registry data |
+| Investigation output | Downloadable JSON evidence package containing the case, wallet, transactions, risk findings, attribution basis, and limitations |
+
+### Required production integrations
+
+The browser prototype uses public blockchain endpoints and a small demonstration registry. Production use requires a maintained VASP cluster dataset or an approved blockchain-intelligence provider, multi-hop graph traversal, cross-chain bridge resolution, authenticated NCRP and SAHYOG APIs, role-based access, and an auditable evidence store.
+
+The detailed implementation map and demo sequence are in [docs/SIH26182-26183-ALIGNMENT.md](docs/SIH26182-26183-ALIGNMENT.md).
 
 
 ---

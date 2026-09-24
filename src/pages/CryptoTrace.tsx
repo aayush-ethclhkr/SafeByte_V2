@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import {
   Shield, Bitcoin, AlertTriangle, CheckCircle, XCircle, ChevronRight,
   Search, RotateCcw, ExternalLink, Zap, Info, ArrowDownLeft, ArrowUpRight,
-  Clock, Activity, Database, TrendingUp, Hash, Copy, Check,
+  Clock, Activity, Database, TrendingUp, Hash, Copy, Check, FileText,
+  Network, Building2, Waypoints, Download, ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +20,7 @@ interface RecentTx {
   value: number;
   date: string;
   direction: "in" | "out";
+  counterparty?: string;
 }
 
 interface RegistryHit {
@@ -50,6 +52,22 @@ interface WalletResult {
   riskFactors: string[];
   explorerUrl: string;
   scannedAt: string;
+}
+
+type IntakeSource = "NCRP" | "SAHYOG" | "LEA_MANUAL";
+
+interface CaseContext {
+  complaintId: string;
+  source: IntakeSource;
+  reportedAt: string;
+}
+
+interface AttributionAssessment {
+  status: "KNOWN ENTITY MATCH" | "PUBLIC DATA INCONCLUSIVE";
+  entity: string;
+  confidence: number;
+  basis: string;
+  nextAction: string;
 }
 
 // ── Known high-risk wallet registry (mirrors Python registry_checker.py) ─────
@@ -161,10 +179,11 @@ async function fetchEthTxs(address: string): Promise<Omit<WalletResult, "address
       else      { outgoing++;  totalSent += value; }
       if (recentTxs.length < 5) {
         recentTxs.push({
-          hash: tx.hash.slice(0, 18) + "...",
+          hash: tx.hash,
           value: parseFloat(value.toFixed(5)),
           date: new Date(parseInt(tx.timeStamp) * 1000).toLocaleDateString("en-GB"),
           direction: isIn ? "in" : "out",
+          counterparty: isIn ? tx.from : tx.to,
         });
       }
     }
@@ -201,10 +220,13 @@ async function fetchBtcData(address: string): Promise<{ balance: number | null; 
         ? out.filter(o => o.addr === address).reduce((s, o) => s + (o.value ?? 0), 0) / 1e8
         : inputs.filter(i => i.prev_out?.addr === address).reduce((s, i) => s + (i.prev_out?.value ?? 0), 0) / 1e8;
       return {
-        hash: (tx.hash as string).slice(0, 18) + "...",
+        hash: tx.hash as string,
         value: parseFloat(value.toFixed(6)),
         date: new Date((tx.time as number) * 1000).toLocaleDateString("en-GB"),
         direction: isIn ? "in" as const : "out" as const,
+        counterparty: isIn
+          ? inputs.find(i => i.prev_out?.addr)?.prev_out?.addr
+          : out.find(o => o.addr && o.addr !== address)?.addr,
       };
     });
 
@@ -341,6 +363,26 @@ const THREAT_STYLES: Record<ThreatLevel, string> = {
   CRITICAL: "bg-red-500/20 text-red-400 border-red-500/40",
 };
 
+function assessAttribution(result: WalletResult): AttributionAssessment {
+  if (result.registryHit.found) {
+    return {
+      status: "KNOWN ENTITY MATCH",
+      entity: result.registryHit.reason ?? "High-risk registry entity",
+      confidence: 95,
+      basis: `Exact address match in the SafeByte registry under case ${result.registryHit.caseId ?? "N/A"}.`,
+      nextAction: "Preserve the transaction evidence and validate the receiving VASP before sending a lawful request.",
+    };
+  }
+
+  return {
+    status: "PUBLIC DATA INCONCLUSIVE",
+    entity: "Nearest VASP not established",
+    confidence: 0,
+    basis: "No exact entity match was found in the current public demonstration registry.",
+    nextAction: "Expand the trace through a verified VASP cluster dataset or an approved blockchain-intelligence API.",
+  };
+}
+
 function ScoreRing({ score, threat }: { score: number; threat: ThreatLevel }) {
   const r = 44;
   const circ = 2 * Math.PI * r;
@@ -392,6 +434,8 @@ function CopyButton({ text }: { text: string }) {
 // ── Main component ────────────────────────────────────────────────────────────
 export default function CryptoTrace() {
   const [input, setInput]           = useState("");
+  const [complaintId, setComplaintId] = useState("");
+  const [intakeSource, setIntakeSource] = useState<IntakeSource>("NCRP");
   const [scanning, setScanning]     = useState(false);
   const [progress, setProgress]     = useState("");
   const [result, setResult]         = useState<WalletResult | null>(null);
@@ -417,6 +461,48 @@ export default function CryptoTrace() {
   const reset = () => { setResult(null); setError(""); setInput(""); };
 
   const rs = result ? RISK_STYLES[result.riskLevel] : null;
+  const caseContext: CaseContext | null = result ? {
+    complaintId: complaintId.trim() || `SB-${result.address.slice(-4).toUpperCase()}-${result.scannedAt.replace(/\D/g, "").slice(-6)}`,
+    source: intakeSource,
+    reportedAt: result.scannedAt,
+  } : null;
+  const attribution = result ? assessAttribution(result) : null;
+
+  const downloadEvidence = () => {
+    if (!result || !caseContext || !attribution) return;
+    const evidencePackage = {
+      schema: "SafeByte CryptoTrace Evidence Package v1",
+      problemStatements: ["SIH26182", "SIH26183"],
+      case: caseContext,
+      subjectWallet: result.address,
+      network: result.network,
+      capturedAt: result.scannedAt,
+      risk: {
+        score: result.riskScore,
+        threatLevel: result.threatLevel,
+        factors: result.riskFactors,
+      },
+      attribution,
+      registry: result.registryHit,
+      transactionSummary: {
+        totalTransactions: result.totalTx,
+        totalReceived: result.totalReceived,
+        totalSent: result.totalSent,
+        recentTransactions: result.recentTxs,
+      },
+      limitations: [
+        "The browser prototype uses public blockchain endpoints and a demonstration registry.",
+        "A VASP match requires validation against an approved, maintained attribution dataset before enforcement action.",
+      ],
+    };
+    const blob = new Blob([JSON.stringify(evidencePackage, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = `${caseContext.complaintId}-cryptotrace-evidence.json`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -433,8 +519,8 @@ export default function CryptoTrace() {
               <div className="h-6 w-px bg-border/50" />
               <div className="flex items-center gap-2">
                 <Bitcoin className="w-5 h-5 text-primary" />
-                <span className="font-semibold">CryptoTrace AI</span>
-                <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">v1.0.0</span>
+                <span className="font-semibold">CryptoTrace VASP</span>
+                <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">SIH 2026</span>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -456,14 +542,13 @@ export default function CryptoTrace() {
         {/* ── Hero ─────────────────────────────────────────────────────────── */}
         <ScrollReveal>
           <div className="text-center mb-8">
-            <p className="text-xs font-mono text-primary uppercase tracking-widest mb-3">CryptoTrace AI · v1.0.0</p>
+            <p className="text-xs font-mono text-primary uppercase tracking-widest mb-3">SIH26182 · SIH26183 · BLOCKCHAIN &amp; CYBERSECURITY</p>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-primary">Crypto</span>Trace AI
+              <span className="text-primary">Crypto</span>Trace VASP
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
-              Trace any blockchain wallet — multi-chain balance lookup, transaction intelligence,
-              risk scoring, and cross-reference against a high-risk wallet registry.
-              Powered by public blockchain APIs, no data leaves your browser.
+              Investigate a victim-reported wallet, preserve transaction evidence, assess risk,
+              and identify the next step for exchange or VASP attribution.
             </p>
           </div>
         </ScrollReveal>
@@ -477,8 +562,32 @@ export default function CryptoTrace() {
                   <Search className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-semibold">Wallet Address Analyzer</h2>
-                  <p className="text-sm text-muted-foreground">Supports ETH · BTC · TRX · LTC · DOGE · XRP · ADA</p>
+                  <h2 className="text-xl font-semibold">Cybercrime Complaint Intake</h2>
+                  <p className="text-sm text-muted-foreground">Start with the reported wallet and preserve its complaint reference.</p>
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-3 mb-3">
+                <div>
+                  <label className="text-xs text-muted-foreground mb-1.5 block">Complaint / Case ID</label>
+                  <Input
+                    value={complaintId}
+                    onChange={e => setComplaintId(e.target.value)}
+                    placeholder="e.g. NCRP-2026-00128"
+                    className="font-mono text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs text-muted-foreground mb-1.5 block">Intake Source</label>
+                  <select
+                    value={intakeSource}
+                    onChange={e => setIntakeSource(e.target.value as IntakeSource)}
+                    className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                  >
+                    <option value="NCRP">NCRP complaint</option>
+                    <option value="SAHYOG">SAHYOG request</option>
+                    <option value="LEA_MANUAL">Manual LEA intake</option>
+                  </select>
                 </div>
               </div>
 
@@ -491,7 +600,7 @@ export default function CryptoTrace() {
                   className="font-mono text-sm flex-1"
                 />
                 <Button onClick={() => scan()} disabled={!input.trim()} className="gap-2 px-6 shrink-0">
-                  <Zap className="h-4 w-4" /> Trace
+                  <Zap className="h-4 w-4" /> Start Trace
                 </Button>
               </div>
 
@@ -615,6 +724,48 @@ export default function CryptoTrace() {
               </ScrollReveal>
             )}
 
+            {/* Case and VASP attribution */}
+            {caseContext && attribution && (
+              <div className="grid md:grid-cols-2 gap-4">
+                <ScrollReveal delay={70}>
+                  <div className="rounded-xl border border-border/50 bg-card/50 overflow-hidden h-full">
+                    <div className="px-4 py-2.5 bg-muted/30 border-b border-border/50 flex items-center gap-2">
+                      <FileText className="h-3.5 w-3.5 text-primary" />
+                      <p className="text-xs font-mono text-primary uppercase tracking-widest">Investigation Case</p>
+                    </div>
+                    <div className="p-4">
+                      <InfoRow label="Complaint ID" value={caseContext.complaintId} mono />
+                      <InfoRow label="Source" value={caseContext.source.replace("LEA_MANUAL", "Manual LEA")} />
+                      <InfoRow label="Evidence Time" value={caseContext.reportedAt} />
+                      <InfoRow label="Chain" value={result.network} />
+                      <button onClick={downloadEvidence} className="mt-4 w-full flex items-center justify-center gap-2 rounded-md border border-primary/30 bg-primary/10 px-3 py-2 text-xs font-semibold text-primary hover:bg-primary/15 transition-colors">
+                        <Download className="h-3.5 w-3.5" /> Download Evidence Package
+                      </button>
+                    </div>
+                  </div>
+                </ScrollReveal>
+
+                <ScrollReveal delay={90}>
+                  <div className="rounded-xl border border-primary/30 bg-primary/5 overflow-hidden h-full">
+                    <div className="px-4 py-2.5 bg-primary/10 border-b border-primary/20 flex items-center gap-2">
+                      <Building2 className="h-3.5 w-3.5 text-primary" />
+                      <p className="text-xs font-mono text-primary uppercase tracking-widest">VASP Attribution</p>
+                    </div>
+                    <div className="p-4">
+                      <InfoRow label="Status" value={<span className={attribution.confidence ? "text-yellow-400" : "text-muted-foreground"}>{attribution.status}</span>} />
+                      <InfoRow label="Entity" value={attribution.entity} />
+                      <InfoRow label="Confidence" value={attribution.confidence ? `${attribution.confidence}%` : "Not scored"} mono />
+                      <p className="text-xs text-muted-foreground mt-3 leading-relaxed">{attribution.basis}</p>
+                      <div className="mt-3 rounded-lg border border-border/50 bg-background/40 px-3 py-2">
+                        <p className="text-[10px] uppercase tracking-wider text-primary font-mono mb-1">Investigator action</p>
+                        <p className="text-xs text-foreground/80 leading-relaxed">{attribution.nextAction}</p>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              </div>
+            )}
+
             {/* Stats grid */}
             <div className="grid md:grid-cols-3 gap-4">
 
@@ -715,7 +866,7 @@ export default function CryptoTrace() {
                           }
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs font-mono text-muted-foreground truncate">{tx.hash}</p>
+                          <p className="text-xs font-mono text-muted-foreground truncate">{tx.hash.slice(0, 22)}...</p>
                           <p className="text-xs text-muted-foreground">{tx.date}</p>
                         </div>
                         <span className={`text-sm font-semibold font-mono shrink-0 ${
@@ -730,19 +881,54 @@ export default function CryptoTrace() {
               </ScrollReveal>
             )}
 
+            {/* Fund-flow evidence */}
+            <ScrollReveal delay={220}>
+              <div className="rounded-xl border border-border/50 bg-card/50 overflow-hidden">
+                <div className="px-4 py-2.5 bg-muted/30 border-b border-border/50 flex items-center gap-2">
+                  <Network className="h-3.5 w-3.5 text-primary" />
+                  <p className="text-xs font-mono text-primary uppercase tracking-widest">Fund-Flow Evidence</p>
+                </div>
+                <div className="p-5">
+                  {result.recentTxs.some(tx => tx.counterparty) ? (
+                    <div className="space-y-3">
+                      {result.recentTxs.filter(tx => tx.counterparty).slice(0, 5).map((tx, i) => (
+                        <div key={`${tx.hash}-${i}`} className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-xs">
+                          <div className={`rounded-lg border px-3 py-2 font-mono truncate ${tx.direction === "in" ? "border-emerald-500/30 bg-emerald-500/5" : "border-border/50 bg-background/30"}`}>
+                            {tx.direction === "in" ? tx.counterparty : result.address}
+                          </div>
+                          <div className="flex flex-col items-center text-muted-foreground">
+                            {tx.direction === "in" ? <ArrowDownLeft className="h-4 w-4 text-emerald-400" /> : <ArrowUpRight className="h-4 w-4 text-red-400" />}
+                            <span className="font-mono text-[10px]">{tx.value} {result.symbol}</span>
+                          </div>
+                          <div className={`rounded-lg border px-3 py-2 font-mono truncate ${tx.direction === "out" ? "border-red-500/30 bg-red-500/5" : "border-primary/30 bg-primary/5"}`}>
+                            {tx.direction === "out" ? tx.counterparty : result.address}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="flex items-start gap-3 text-sm text-muted-foreground">
+                      <Waypoints className="h-4 w-4 text-primary mt-0.5" />
+                      Counterparty paths require transaction details from the selected network endpoint. The case remains preserved for a deeper API trace.
+                    </div>
+                  )}
+                </div>
+              </div>
+            </ScrollReveal>
+
             {/* How it works */}
             <ScrollReveal delay={240}>
               <div className="rounded-xl border border-blue-500/20 bg-blue-500/5 p-5">
                 <div className="flex items-start gap-3">
                   <Info className="h-4 w-4 text-blue-400 mt-0.5 shrink-0" />
                   <div>
-                    <p className="text-sm font-semibold text-blue-400 mb-2">How CryptoTrace AI Works</p>
+                    <p className="text-sm font-semibold text-blue-400 mb-2">SIH Investigation Workflow</p>
                     <ul className="space-y-1 text-sm text-blue-300/80">
-                      <li>• Detects blockchain network from address format (Ethereum, Bitcoin, Tron, etc.)</li>
-                      <li>• Fetches live balance and transaction history from public blockchain APIs</li>
-                      <li>• Runs the risk engine: balance tiers + transaction volume + registry cross-check</li>
-                      <li>• Cross-references address against a curated high-risk wallet registry (OFAC, known darknet)</li>
-                      <li>• All analysis runs in your browser — no address or data sent to SafeByte servers</li>
+                      <li>1. Capture the victim complaint reference and suspect wallet.</li>
+                      <li>2. Detect the blockchain and collect available transaction evidence.</li>
+                      <li>3. Build the fund-flow view and check known high-risk entities.</li>
+                      <li>4. Assess whether public evidence supports a VASP attribution.</li>
+                      <li>5. Export an evidence package for validation and lawful follow-up.</li>
                     </ul>
                   </div>
                 </div>
@@ -766,10 +952,10 @@ export default function CryptoTrace() {
           <ScrollReveal delay={120}>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
               {[
-                { icon: Search,    title: "Multi-Chain Detection",   desc: "Automatically identifies ETH, BTC, TRX, LTC, DOGE, XRP, ADA from address format." },
-                { icon: Activity,  title: "Transaction Intelligence", desc: "Fetches live tx history — total count, incoming/outgoing volume, wallet age." },
-                { icon: TrendingUp,title: "Risk Engine",             desc: "0–100 score using balance tiers, tx volume, and linked case count." },
-                { icon: Database,  title: "Registry Check",          desc: "Cross-references against OFAC-sanctioned and known darknet-linked wallets." },
+                { icon: FileText,    title: "Complaint Intake",   desc: "Links the suspect wallet to an NCRP, SAHYOG, or manual law-enforcement case reference." },
+                { icon: Activity,    title: "Fund-Flow Evidence", desc: "Collects available transaction history and identifies recent counterparties." },
+                { icon: Building2,   title: "VASP Attribution",   desc: "Reports an entity match only when the available evidence supports it." },
+                { icon: ShieldCheck, title: "Evidence Export",    desc: "Creates a structured case package with risk findings, transactions, and limitations." },
               ].map(({ icon: Icon, title, desc }) => (
                 <div key={title} className="p-5 rounded-xl border border-border/50 bg-card/30 hover:border-primary/20 transition-colors">
                   <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
